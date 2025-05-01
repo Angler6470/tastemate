@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TasteMate</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <div class="app-container">
+
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="images/logo.png" alt="TasteMate Logo" class="logo-img" id="logo"/>
+      </div>
+
+      <!-- Promo Carousel -->
+      <div class="carousel-wrapper">
+        <div class="carousel" id="promo-carousel">
+          <div class="promo-slide-wrapper">
+            <img src="images/promo1.jpg" class="promo-slide" />
+            <div class="slide-caption">Taco Tuesday Deal</div>
+          </div>
+          <div class="promo-slide-wrapper">
+            <img src="images/promo2.jpg" class="promo-slide" />
+            <div class="slide-caption">Fresh Guac Fiesta</div>
+          </div>
+          <div class="promo-slide-wrapper">
+            <img src="images/promo3.jpg" class="promo-slide" />
+            <div class="slide-caption">Spicy Salsa Special</div>
+          </div>
+          <div class="promo-slide-wrapper">
+            <img src="images/promo4.jpg" class="promo-slide" />
+            <div class="slide-caption">Loaded Nachos Night</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Area -->
+      <div class="chat-area" id="chat-display">
+        <div class="message bot">👋 Hello! I'm TasteMate — your Flavor Companion! Tell me what you're craving.</div>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Tell me what you're craving..." />
+        <button id="send-btn">Send</button>
+      </div>
+
+      <!-- Flavor Shortcuts -->
+      <div class="shortcuts">
+        <div class="label">Flavor Shortcuts</div>
+        <div class="hotkeys">
+          <button class="hotkey">Sweet</button>
+          <button class="hotkey">Savory</button>
+          <button class="hotkey">Spicy</button>
+          <button class="hotkey">Tangy</button>
+          <button class="hotkey">Creamy</button>
+        </div>
+      </div>
+
+      <!-- Spiciness Slider -->
+      <div class="spice-container">
+        <label for="spiciness-slider">How Spicy?</label>
+        <input type="range" min="0" max="5" value="0" id="spiciness-slider" />
+        <div class="peppers" id="pepper-display">
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+  <script src="js/admin-panel.js"></script>
+  <script src="js/button-sounds.js"></script>
+</body>
+</html>
