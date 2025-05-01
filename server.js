@@ -26,7 +26,7 @@ const openai = new OpenAI({
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 // Routes
 app.get('/', (req, res) => {
@@ -105,6 +105,6 @@ process.on('SIGINT', () => {
 });
 
 // Start Server
-app.listen(3001, '0.0.0.0', () => {
-  console.log('Server running on port 3001');
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
