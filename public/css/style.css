@@ -2,12 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
 
-/* Base reset and app layout styling */
+/* Basic reset and flex layout centering */
 body, html {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: linear-gradient(to bottom right, #c8e6e9, #b2ebf2); /* soft gradient background */
+  background: linear-gradient(to bottom right, #c8e6e9, #b2ebf2); /* background gradient */
   font-family: 'Rubik', sans-serif;
   display: flex;
   justify-content: center;
@@ -15,6 +15,7 @@ body, html {
   overflow: hidden;
 }
 
+/* Outer app wrapper for consistent padding */
 .app-wrapper {
   width: 100%;
   max-width: 480px;
@@ -22,14 +23,14 @@ body, html {
   box-sizing: border-box;
 }
 
-/* Hidden gear for admin panel access */
+/* Hidden gear icon for triggering admin panel */
 #admin-gear {
   width: 30px;
   height: 30px;
   position: absolute;
   bottom: 10px;
   left: 10px;
-  opacity: 0;
+  opacity: 0; /* invisible but clickable */
   z-index: 99;
   pointer-events: auto;
   cursor: default;
@@ -39,7 +40,7 @@ body, html {
   cursor: default;
 }
 
-/* App container layout */
+/* Main app container with rounded border and shadow */
 .app-container {
   background: #ffffff;
   border: 2px solid #80deea;
@@ -55,43 +56,37 @@ body, html {
   z-index: 10;
 }
 
-/* Logo container alignment */
+/* Centered logo display */
 .logo-container {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.logo-img {
-  width: 180px;
+/* Logo image, responsive and animated */
+.logo-img, #logo {
+  max-width: 120px;
+  width: 100%;
   height: auto;
   display: block;
   margin: 0 auto;
-}
-
-/* 🔁 Logo hover spin effect */
-#logo {
-  width: 180px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  transition: transform 0.4s ease-in-out; /* smooth spin */
+  transition: transform 0.4s ease-in-out;
 }
 
 #logo:hover {
-  transform: rotate(360deg); /* full rotation on hover */
+  transform: rotate(360deg); /* spin effect on hover */
 }
 
-/* Promo carousel container */
+/* Promo carousel setup */
 .carousel-wrapper {
   overflow: hidden;
   border-radius: 12px;
   width: 100%;
-  height: 240px;
+  height: 180px;
   position: relative;
   background: #e0f7fa;
 }
 
-/* Carousel inner scrolling row */
+/* Horizontal scrolling promo container */
 .carousel {
   display: flex;
   width: auto;
@@ -99,7 +94,7 @@ body, html {
   height: 100%;
 }
 
-/* Each promo slide layout */
+/* Individual promo slide container */
 .promo-slide-wrapper {
   width: 100%;
   height: 100%;
@@ -111,7 +106,7 @@ body, html {
   background: #ffffff;
 }
 
-/* Slide image */
+/* Promo image settings */
 .promo-slide {
   width: 100%;
   height: 100%;
@@ -120,7 +115,7 @@ body, html {
   display: block;
 }
 
-/* Slide caption overlay */
+/* Caption text overlay on promo image */
 .slide-caption {
   position: absolute;
   bottom: 0;
@@ -137,11 +132,12 @@ body, html {
   pointer-events: none;
 }
 
+/* Remove outline from focused buttons */
 button:focus {
   outline: none;
 }
 
-/* Chat display area */
+/* Chat bubble container */
 .chat-area {
   background: #e0f2f1;
   padding: 12px;
@@ -156,12 +152,15 @@ button:focus {
   color: #333;
 }
 
-/* Chat input row */
+/* Chat input row and layout */
 .chat-input {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
+/* Input box styles */
 .chat-input input {
   flex: 1;
   padding: 12px;
@@ -170,11 +169,12 @@ button:focus {
   background: #ffffff;
   color: #333;
   font-size: 1rem;
+  min-width: 0; /* fixes overflow on smaller screens */
 }
 
-/* Send button */
+/* Send button styles */
 .chat-input button {
-  padding: 12px 18px;
+  padding: 12px 16px;
   background: #26c6da;
   color: white;
   border: none;
@@ -182,6 +182,7 @@ button:focus {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
 }
 
 .chat-input button:hover {
@@ -192,7 +193,7 @@ button:focus {
   background: #0097a7;
 }
 
-/* Flavor shortcut section */
+/* Shortcut section heading */
 .shortcuts {
   text-align: center;
 }
@@ -203,6 +204,7 @@ button:focus {
   color: #00796b;
 }
 
+/* Shortcut button group */
 .hotkeys {
   display: flex;
   justify-content: center;
@@ -210,6 +212,7 @@ button:focus {
   gap: 10px;
 }
 
+/* Style for each shortcut button */
 .hotkeys button {
   background: #e0f7fa;
   border: none;
@@ -229,7 +232,7 @@ button:focus {
   background: #80deea;
 }
 
-/* Spiciness slider container */
+/* Spiciness slider layout */
 .spice-container {
   text-align: center;
   padding-top: 20px;
@@ -237,7 +240,7 @@ button:focus {
   position: relative;
 }
 
-/* Spiciness slider bar */
+/* Slider track */
 #spice-slider {
   width: 100%;
   background: #e0e0e0;
@@ -247,20 +250,20 @@ button:focus {
   transition: background 0.3s ease;
 }
 
-/* Heat animation at max level */
+/* Animated heat effect on slider at max */
 #spice-slider.burnt {
   background: linear-gradient(to right, #c8c8c8, #f57c00, #e53935, #b71c1c);
   background-size: 400% auto;
   animation: sliderHeatMove 2s linear infinite;
 }
 
-/* Animated background gradient */
+/* Keyframes for slider burn animation */
 @keyframes sliderHeatMove {
   0%   { background-position: 0% center; }
   100% { background-position: 400% center; }
 }
 
-/* Slider thumb for Chrome */
+/* Chrome slider thumb */
 #spice-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -273,7 +276,7 @@ button:focus {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Slider thumb for Firefox */
+/* Firefox slider thumb */
 #spice-slider::-moz-range-thumb {
   height: 20px;
   width: 20px;
@@ -284,16 +287,16 @@ button:focus {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Pepper emojis container */
+/* Pepper icons displayed under slider */
 .peppers {
   margin-top: 5px;
   position: relative;
   display: flex;
   justify-content: center;
-  direction: ltr; /* ensure left-to-right order */
+  direction: ltr;
 }
 
-/* Each pepper style */
+/* Pepper icons default state */
 .pepper {
   font-size: 1.3rem;
   margin: 0 2px;
@@ -301,20 +304,20 @@ button:focus {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Active pepper glow animation */
+/* Glowing peppers triggered by slider */
 .pepper.glow {
   animation: pepperWiggle 0.4s ease;
   opacity: 1;
 }
 
-/* Incremental red glow per pepper based on position */
+/* Each pepper gets stronger glow as it increases */
 .pepper.glow:nth-child(1) { filter: drop-shadow(0 0 1px red); }
 .pepper.glow:nth-child(2) { filter: drop-shadow(0 0 2px red); }
 .pepper.glow:nth-child(3) { filter: drop-shadow(0 0 3px red); }
 .pepper.glow:nth-child(4) { filter: drop-shadow(0 0 4px red); }
 .pepper.glow:nth-child(5) { filter: drop-shadow(0 0 5px red); }
 
-/* Wiggling animation for glowing peppers */
+/* Wiggle animation for glowing peppers */
 @keyframes pepperWiggle {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(-6deg); }
