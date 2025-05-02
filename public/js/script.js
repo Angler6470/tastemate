@@ -23,7 +23,7 @@ const translations = {
 
 // Load tick sound for spiciness changes and hotkey interactions
 const tickSound = new Audio('sounds/button_hover.mp3');
-tickSound.volume = 0.2;
+tickSound.volume = 0.08;
 
 // Apply translations to visible elements based on selected language
 function applyTranslations() {
