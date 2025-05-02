@@ -7,8 +7,9 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: linear-gradient(to bottom right, #c8e6e9, #b2ebf2); /* background gradient */
   font-family: 'Rubik', sans-serif;
+  background: url('../images/tastemate-bg.png') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
