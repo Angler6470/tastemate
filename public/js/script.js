@@ -9,6 +9,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const pepperDisplay = document.getElementById('pepper-display');
   const carousel = document.getElementById('promo-carousel');
 
+  // Store language preference
+let currentLanguage = localStorage.getItem('language') || 'en';
+
+// Translation map
+const translations = {
+  en: {
+    flavorShortcuts: 'Flavor Shortcuts',
+    howSpicy: 'How Spicy?',
+    sendPlaceholder: "Tell me what you're craving..."
+  },
+  es: {
+    flavorShortcuts: 'Atajos de Sabor',
+    howSpicy: '¿Qué tan picante?',
+    sendPlaceholder: 'Dime qué se te antoja...'
+  }
+};
+
+// Called when flag is clicked
+function setLanguage(lang) {
+  currentLanguage = lang;
+  localStorage.setItem('language', lang);
+  applyTranslations();
+}
+
+// Update visible UI text
+function applyTranslations() {
+  const t = translations[currentLanguage];
+  document.querySelector('.shortcuts .label').innerText = t.flavorShortcuts;
+  document.querySelector('label[for=\"spiciness-slider\"]').innerText = t.howSpicy;
+  document.querySelector('#chat-input').placeholder = t.sendPlaceholder;
+}
+
+// Apply preferred language on page load
+window.addEventListener('DOMContentLoaded', applyTranslations);
+
   function addMessage(text, type = 'bot') {
     if (!chatDisplay) return;
     const div = document.createElement('div');
