@@ -9,12 +9,14 @@ const translations = {
     flavorShortcuts: 'Flavor Shortcuts',
     howSpicy: 'How Spicy?',
     sendPlaceholder: "Tell me what you're craving...",
+    botGreeting: "👋 Hello! I'm TasteMate — your Flavor Companion! Tell me what you're craving.",
     hotkeys: ['Sweet', 'Savory', 'Spicy', 'Tangy', 'Creamy']
   },
   es: {
     flavorShortcuts: 'Atajos de Sabor',
     howSpicy: '¿Qué tan picante?',
     sendPlaceholder: 'Dime qué se te antoja...',
+    botGreeting: "👋 ¡Hola! Soy TasteMate — tu Compañero de Sabor. Dime qué se te antoja.",
     hotkeys: ['Dulce', 'Salado', 'Picante', 'Ácido', 'Cremoso']
   }
 };
@@ -31,6 +33,15 @@ function applyTranslations() {
   hotkeyButtons.forEach((btn, index) => {
     if (t.hotkeys[index]) btn.innerText = t.hotkeys[index];
   });
+
+  // Update greeting message
+  const chatDisplay = document.getElementById('chat-display');
+  if (chatDisplay) {
+    const firstMessage = chatDisplay.querySelector('.message.bot');
+    if (firstMessage) {
+      firstMessage.textContent = t.botGreeting;
+    }
+  }
 }
 
 // Set the language and persist it in localStorage
