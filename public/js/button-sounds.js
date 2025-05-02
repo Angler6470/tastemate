@@ -1,12 +1,12 @@
 // 🎧 Sound effect elements
 const sendSound = new Audio('sounds/send_bloop.mp3');
-sendSound.volume = 0.060;
+sendSound.volume = 0.080;
 
 const sizzleSound = new Audio('sounds/spicy_sizzle.mp3');
-sizzleSound.volume = 0.060;
+sizzleSound.volume = 0.080;
 
 const hoverSound = new Audio('sounds/button_hover.mp3');
-hoverSound.volume = 0.060;
+hoverSound.volume = 0.080;
 
 const secretSound = new Audio('sounds/admin_secret.mp3');
 secretSound.volume = 0.4;
