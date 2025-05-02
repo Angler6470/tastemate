@@ -2,6 +2,21 @@
 
 // Get the stored language preference or default to English
 let currentLanguage = localStorage.getItem('language') || 'en';
+let soundEnabled = localStorage.getItem('soundEnabled') !== 'false'; // default ON
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  localStorage.setItem('soundEnabled', soundEnabled);
+  document.getElementById('sound-toggle').textContent = soundEnabled ? '🔊' : '🔇';
+}
+
+// Set icon when page loads
+window.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('sound-toggle');
+  if (toggleBtn) {
+    toggleBtn.textContent = soundEnabled ? '🔊' : '🔇';
+  }
+});
 
 // Define translations for supported UI elements in English and Spanish
 const translations = {
