@@ -16,6 +16,14 @@ body, html {
   overflow: hidden;
 }
 
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.7); /* or use a gradient */
+  z-index: 0;
+}
+
 /* Outer app wrapper for consistent padding */
 .app-wrapper {
   width: 100%;
