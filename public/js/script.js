@@ -21,6 +21,10 @@ const translations = {
   }
 };
 
+// Load tick sound for spiciness changes
+const tickSound = new Audio('sounds/button_hover.mp3');
+tickSound.volume = 0.2;
+
 // Apply translations to visible elements based on selected language
 function applyTranslations() {
   const t = translations[currentLanguage];
@@ -97,6 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       spicinessSlider.classList.remove('burnt');
     }
+
+    // Play tick sound on slider interaction
+    tickSound.currentTime = 0;
+    tickSound.play();
   }
 
   // Send user input to the backend API and display the bot response
