@@ -400,3 +400,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+// Make toggleSound globally accessible so HTML onclick can call it
+window.toggleSound = toggleSound;
