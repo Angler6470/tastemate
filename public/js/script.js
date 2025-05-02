@@ -1,31 +1,39 @@
 // script.js — Pepper glow increases per level (5 = hottest on right)
 
-// Store language preference on page load
+// Get the stored language preference or default to English
 let currentLanguage = localStorage.getItem('language') || 'en';
 
-// Translation map for supported languages
+// Define translations for supported UI elements in English and Spanish
 const translations = {
   en: {
     flavorShortcuts: 'Flavor Shortcuts',
     howSpicy: 'How Spicy?',
-    sendPlaceholder: "Tell me what you're craving..."
+    sendPlaceholder: "Tell me what you're craving...",
+    hotkeys: ['Sweet', 'Savory', 'Spicy', 'Tangy', 'Creamy']
   },
   es: {
     flavorShortcuts: 'Atajos de Sabor',
     howSpicy: '¿Qué tan picante?',
-    sendPlaceholder: 'Dime qué se te antoja...'
+    sendPlaceholder: 'Dime qué se te antoja...',
+    hotkeys: ['Dulce', 'Salado', 'Picante', 'Ácido', 'Cremoso']
   }
 };
 
-// Apply translations to UI elements
+// Apply translations to visible elements based on selected language
 function applyTranslations() {
   const t = translations[currentLanguage];
   document.querySelector('.shortcuts .label').innerText = t.flavorShortcuts;
   document.querySelector('label[for="spiciness-slider"]').innerText = t.howSpicy;
   document.querySelector('#chat-input').placeholder = t.sendPlaceholder;
+
+  // Update hotkey button text
+  const hotkeyButtons = document.querySelectorAll('.hotkey');
+  hotkeyButtons.forEach((btn, index) => {
+    if (t.hotkeys[index]) btn.innerText = t.hotkeys[index];
+  });
 }
 
-// Update language on flag click
+// Set the language and persist it in localStorage
 function setLanguage(lang) {
   currentLanguage = lang;
   localStorage.setItem('language', lang);
@@ -33,6 +41,7 @@ function setLanguage(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Cache DOM references
   const chatDisplay = document.getElementById('chat-display');
   const chatInput = document.getElementById('chat-input');
   const sendBtn = document.getElementById('send-btn');
@@ -41,8 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const pepperDisplay = document.getElementById('pepper-display');
   const carousel = document.getElementById('promo-carousel');
 
+  // Apply translations on page load
   applyTranslations();
 
+  // Append a message to the chat area
   function addMessage(text, type = 'bot') {
     if (!chatDisplay) return;
     const div = document.createElement('div');
@@ -52,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chatDisplay.scrollTop = chatDisplay.scrollHeight;
   }
 
+  // Update pepper icons based on spice level
   function updateSpiceIcons(level) {
     let output = '';
     for (let i = 0; i < 5; i++) {
@@ -60,13 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     pepperDisplay.innerHTML = output;
 
+    // Restart animation to show pepper wiggle
     const peppers = pepperDisplay.querySelectorAll('.pepper.glow');
     peppers.forEach((pepper) => {
       pepper.style.animation = 'none';
-      void pepper.offsetWidth;
+      void pepper.offsetWidth; // Force reflow
       pepper.style.animation = 'pepperWiggle 0.4s ease';
     });
 
+    // Apply burn animation if level is maxed out
     if (level === 5) {
       spicinessSlider.classList.add('burnt');
     } else {
@@ -74,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Send user input to the backend API and display the bot response
   async function sendToTasteBot(message) {
     try {
       const response = await fetch('/api/chat', {
@@ -95,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Handle sending message on button click or pressing Enter
   if (sendBtn && chatInput) {
     sendBtn.addEventListener('click', () => {
       const msg = chatInput.value.trim();
@@ -109,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Hotkey button click listeners
   hotkeys?.forEach(btn => {
     btn.addEventListener('click', () => {
       const flavor = btn.textContent.trim();
@@ -117,31 +134,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Update peppers when slider changes
   if (spicinessSlider) {
     spicinessSlider.addEventListener('input', () => {
       updateSpiceIcons(Number(spicinessSlider.value));
     });
-    updateSpiceIcons(Number(spicinessSlider.value));
+    updateSpiceIcons(Number(spicinessSlider.value)); // Initialize on load
   }
 
-  // Promo Carousel Logic
+  // --- Promo Carousel Logic ---
   let currentSlide = 0;
   const slides = document.querySelectorAll('.promo-slide-wrapper');
 
+  // Move carousel to the specified slide
   function showSlide(index) {
     if (carousel) {
       carousel.style.transform = `translateX(-${index * 100}%)`;
     }
   }
 
+  // Automatically cycle to the next slide
   function nextSlide() {
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   }
 
-  setInterval(nextSlide, 4000);
+  setInterval(nextSlide, 4000); // Slide every 4 seconds
 
+  // Touch swipe support for carousel
   let touchStartX = 0;
+
   carousel?.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
   });
@@ -149,10 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
   carousel?.addEventListener('touchend', (e) => {
     const touchEndX = e.changedTouches[0].clientX;
     if (touchEndX < touchStartX - 50) {
-      nextSlide();
+      nextSlide(); // Swipe left
     } else if (touchEndX > touchStartX + 50) {
       currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
+      showSlide(currentSlide); // Swipe right
     }
   });
 });
