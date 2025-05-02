@@ -21,9 +21,9 @@ const translations = {
   }
 };
 
-// Load tick sound for spiciness changes
+// Load tick sound for spiciness changes and hotkey interactions
 const tickSound = new Audio('sounds/button_hover.mp3');
-tickSound.volume = 0.08;
+tickSound.volume = 0.2;
 
 // Apply translations to visible elements based on selected language
 function applyTranslations() {
@@ -144,12 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Hotkey button click listeners
+  // Hotkey button click listeners (with tick sound)
   hotkeys?.forEach(btn => {
     btn.addEventListener('click', () => {
       const flavor = btn.textContent.trim();
       addMessage(flavor, 'user');
       sendToTasteBot(flavor);
+      tickSound.currentTime = 0;
+      tickSound.play();
     });
   });
 
