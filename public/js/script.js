@@ -1,18 +1,9 @@
 // script.js — Pepper glow increases per level (5 = hottest on right)
 
-document.addEventListener('DOMContentLoaded', () => {
-  const chatDisplay = document.getElementById('chat-display');
-  const chatInput = document.getElementById('chat-input');
-  const sendBtn = document.getElementById('send-btn');
-  const hotkeys = document.querySelectorAll('.hotkey');
-  const spicinessSlider = document.getElementById('spiciness-slider');
-  const pepperDisplay = document.getElementById('pepper-display');
-  const carousel = document.getElementById('promo-carousel');
-
-  // Store language preference
+// Store language preference on page load
 let currentLanguage = localStorage.getItem('language') || 'en';
 
-// Translation map
+// Translation map for supported languages
 const translations = {
   en: {
     flavorShortcuts: 'Flavor Shortcuts',
@@ -26,23 +17,31 @@ const translations = {
   }
 };
 
-// Called when flag is clicked
+// Apply translations to UI elements
+function applyTranslations() {
+  const t = translations[currentLanguage];
+  document.querySelector('.shortcuts .label').innerText = t.flavorShortcuts;
+  document.querySelector('label[for="spiciness-slider"]').innerText = t.howSpicy;
+  document.querySelector('#chat-input').placeholder = t.sendPlaceholder;
+}
+
+// Update language on flag click
 function setLanguage(lang) {
   currentLanguage = lang;
   localStorage.setItem('language', lang);
   applyTranslations();
 }
 
-// Update visible UI text
-function applyTranslations() {
-  const t = translations[currentLanguage];
-  document.querySelector('.shortcuts .label').innerText = t.flavorShortcuts;
-  document.querySelector('label[for=\"spiciness-slider\"]').innerText = t.howSpicy;
-  document.querySelector('#chat-input').placeholder = t.sendPlaceholder;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const chatDisplay = document.getElementById('chat-display');
+  const chatInput = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('send-btn');
+  const hotkeys = document.querySelectorAll('.hotkey');
+  const spicinessSlider = document.getElementById('spiciness-slider');
+  const pepperDisplay = document.getElementById('pepper-display');
+  const carousel = document.getElementById('promo-carousel');
 
-// Apply preferred language on page load
-window.addEventListener('DOMContentLoaded', applyTranslations);
+  applyTranslations();
 
   function addMessage(text, type = 'bot') {
     if (!chatDisplay) return;
@@ -56,7 +55,6 @@ window.addEventListener('DOMContentLoaded', applyTranslations);
   function updateSpiceIcons(level) {
     let output = '';
     for (let i = 0; i < 5; i++) {
-      const reverseIndex = 4 - i;
       const active = i < level;
       output += `<span class="pepper ${active ? 'glow' : ''}" style="${active ? 'animation: none' : ''}">🌶️</span>`;
     }
