@@ -177,6 +177,12 @@ button:focus {
 }
 
 /* Chat input row and layout */
+#chat-input {
+  font-family: 'Chewy', cursive;
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+
 .chat-input {
   display: flex;
   gap: 8px;
