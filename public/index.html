@@ -7,6 +7,17 @@
   <title>TasteMate</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+  <style>
+    /* Temporary inline fix: Ensure mobile content isn't cut off */
+    body, html {
+      height: auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .app-wrapper {
+      padding-bottom: 30px;
+    }
+  </style>
 </head>
 <body>
   <div class="app-wrapper">
@@ -69,7 +80,7 @@
       </div>
 
       <!-- Flavor Shortcuts -->
-      <div class="shortcuts">
+      <div class="shortcuts" style="margin-bottom: 50px;">
         <div class="label">Flavor Shortcuts</div>
         <div class="hotkeys">
           <button class="hotkey">Sweet</button>
