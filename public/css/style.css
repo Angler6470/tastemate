@@ -24,6 +24,19 @@ body::before {
   z-index: 0;
 }
 
+#sound-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #fff;
+}
+
+#sound-toggle:hover {
+  opacity: 0.8;
+}
+
 /* Outer app wrapper for consistent padding */
 .app-wrapper {
   width: 100%;
