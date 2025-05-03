@@ -51,8 +51,21 @@
 
       <!-- Chat Input -->
       <div class="chat-input">
-        <input type="text" id="chat-input" placeholder="Tell me what you're craving..." style="width: 100%; max-width: 100%; font-size: 1rem;" />
+        <input type="text" id="chat-input" placeholder="What are you in the mood for?..." style="width: 100%; max-width: 100%; font-size: 1rem;" />
         <button id="send-btn">Send</button>
+      </div>
+
+      <!-- Spiciness Slider (moved above shortcuts) -->
+      <div class="spice-container" style="margin-bottom: 20px;">
+        <label for="spiciness-slider">How Spicy?</label>
+        <input type="range" min="0" max="5" value="0" id="spiciness-slider" />
+        <div class="peppers" id="pepper-display">
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+          <span class="spice-icon">🌶️</span>
+        </div>
       </div>
 
       <!-- Flavor Shortcuts -->
@@ -64,19 +77,6 @@
           <button class="hotkey">Spicy</button>
           <button class="hotkey">Tangy</button>
           <button class="hotkey">Creamy</button>
-        </div>
-      </div>
-
-      <!-- Spiciness Slider -->
-      <div class="spice-container">
-        <label for="spiciness-slider">How Spicy?</label>
-        <input type="range" min="0" max="5" value="0" id="spiciness-slider" />
-        <div class="peppers" id="pepper-display">
-          <span class="spice-icon">🌶️</span>
-          <span class="spice-icon">🌶️</span>
-          <span class="spice-icon">🌶️</span>
-          <span class="spice-icon">🌶️</span>
-          <span class="spice-icon">🌶️</span>
         </div>
       </div>
 
