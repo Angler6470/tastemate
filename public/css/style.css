@@ -20,7 +20,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: rgba(255,255,255,0.7); /* or use a gradient */
+  background: rgba(255,255,255,0.7);
   z-index: 0;
 }
 
@@ -45,24 +45,18 @@ body::before {
   box-sizing: border-box;
 }
 
-/* Hidden gear icon for triggering admin panel */
 #admin-gear {
   width: 30px;
   height: 30px;
   position: absolute;
   bottom: 10px;
   left: 10px;
-  opacity: 0; /* invisible but clickable */
+  opacity: 0;
   z-index: 99;
   pointer-events: auto;
   cursor: default;
 }
 
-#admin-gear:hover {
-  cursor: default;
-}
-
-/* Language switcher (flags) container */
 .language-switcher {
   position: absolute;
   top: 10px;
@@ -86,7 +80,6 @@ body::before {
   border-color: #26c6da;
 }
 
-/* Main app container with rounded border and shadow */
 .app-container {
   background: #ffffff;
   border: 2px solid #80deea;
@@ -102,13 +95,11 @@ body::before {
   z-index: 10;
 }
 
-/* Centered logo display */
 .logo-container {
   text-align: center;
   margin-bottom: 10px;
 }
 
-/* Logo image, responsive and animated */
 .logo-img, #logo {
   max-width: 120px;
   width: 100%;
@@ -119,10 +110,9 @@ body::before {
 }
 
 #logo:hover {
-  transform: rotate(360deg); /* spin effect on hover */
+  transform: rotate(360deg);
 }
 
-/* Promo carousel setup */
 .carousel-wrapper {
   overflow: hidden;
   border-radius: 12px;
@@ -132,7 +122,6 @@ body::before {
   background: #e0f7fa;
 }
 
-/* Horizontal scrolling promo container */
 .carousel {
   display: flex;
   width: auto;
@@ -140,7 +129,6 @@ body::before {
   height: 100%;
 }
 
-/* Individual promo slide container */
 .promo-slide-wrapper {
   width: 100%;
   height: 100%;
@@ -152,7 +140,6 @@ body::before {
   background: #ffffff;
 }
 
-/* Promo image settings */
 .promo-slide {
   width: 100%;
   height: 100%;
@@ -161,7 +148,6 @@ body::before {
   display: block;
 }
 
-/* Caption text overlay on promo image */
 .slide-caption {
   position: absolute;
   bottom: 0;
@@ -178,12 +164,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Remove outline from focused buttons */
-button:focus {
-  outline: none;
-}
-
-/* Chat bubble container */
 .chat-area {
   background: #e0f2f1;
   padding: 12px;
@@ -198,7 +178,6 @@ button:focus {
   color: #333;
 }
 
-/* Chat input row and layout */
 #chat-input {
   font-family: 'Chewy', cursive;
   font-weight: 400;
@@ -212,7 +191,6 @@ button:focus {
   align-items: center;
 }
 
-/* Input box styles */
 .chat-input input {
   flex: 1;
   padding: 12px;
@@ -221,10 +199,9 @@ button:focus {
   background: #ffffff;
   color: #333;
   font-size: 1rem;
-  min-width: 0; /* fixes overflow on smaller screens */
+  min-width: 0;
 }
 
-/* Send button styles */
 .chat-input button {
   padding: 12px 16px;
   background: #26c6da;
@@ -245,7 +222,6 @@ button:focus {
   background: #0097a7;
 }
 
-/* Shortcut section heading */
 .shortcuts {
   text-align: center;
 }
@@ -256,15 +232,13 @@ button:focus {
   color: #00796b;
 }
 
-/* Shortcut button group */
 .hotkeys {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
+  justify-content: center;
 }
 
-/* Style for each shortcut button */
 .hotkeys button {
   background: #e0f7fa;
   border: none;
@@ -284,7 +258,6 @@ button:focus {
   background: #80deea;
 }
 
-/* Spiciness slider layout */
 .spice-container {
   text-align: center;
   padding-top: 20px;
@@ -292,8 +265,7 @@ button:focus {
   position: relative;
 }
 
-/* Slider track */
-#spice-slider {
+#spiciness-slider {
   width: 100%;
   background: #e0e0e0;
   border-radius: 8px;
@@ -302,23 +274,19 @@ button:focus {
   transition: background 0.3s ease;
 }
 
-/* Animated heat effect on slider at max */
-#spice-slider.burnt {
+#spiciness-slider.burnt {
   background: linear-gradient(to right, #c8c8c8, #f57c00, #e53935, #b71c1c);
   background-size: 400% auto;
   animation: sliderHeatMove 2s linear infinite;
 }
 
-/* Keyframes for slider burn animation */
 @keyframes sliderHeatMove {
   0%   { background-position: 0% center; }
   100% { background-position: 400% center; }
 }
 
-/* Chrome slider thumb */
-#spice-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
+#spiciness-slider::-webkit-slider-thumb,
+#spiciness-slider::-moz-range-thumb {
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -328,27 +296,13 @@ button:focus {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Firefox slider thumb */
-#spice-slider::-moz-range-thumb {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #f44336;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Pepper icons displayed under slider */
 .peppers {
   margin-top: 5px;
-  position: relative;
   display: flex;
   justify-content: center;
   direction: ltr;
 }
 
-/* Pepper icons default state */
 .pepper {
   font-size: 1.3rem;
   margin: 0 2px;
@@ -356,20 +310,17 @@ button:focus {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Glowing peppers triggered by slider */
 .pepper.glow {
   animation: pepperWiggle 0.4s ease;
   opacity: 1;
 }
 
-/* Each pepper gets stronger glow as it increases */
 .pepper.glow:nth-child(1) { filter: drop-shadow(0 0 1px red); }
 .pepper.glow:nth-child(2) { filter: drop-shadow(0 0 2px red); }
 .pepper.glow:nth-child(3) { filter: drop-shadow(0 0 3px red); }
 .pepper.glow:nth-child(4) { filter: drop-shadow(0 0 4px red); }
 .pepper.glow:nth-child(5) { filter: drop-shadow(0 0 5px red); }
 
-/* Wiggle animation for glowing peppers */
 @keyframes pepperWiggle {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(-6deg); }
