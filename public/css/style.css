@@ -90,10 +90,12 @@ body::before {
   flex-direction: column;
   gap: 20px;
   position: relative;
-  max-height: 100vh;
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
   z-index: 10;
 }
+
+/* The rest remains unchanged */
 
 .logo-container {
   text-align: center;
