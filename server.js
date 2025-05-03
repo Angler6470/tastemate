@@ -1,4 +1,7 @@
 require('dotenv').config();
+if (process.env.RUN_SEED === 'true') {
+  require('./db/seed');
+}
 console.log("Loaded DATABASE_URL:", process.env.DATABASE_URL);
 const express = require('express');
 const { Pool } = require('pg');
