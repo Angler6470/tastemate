@@ -13,9 +13,10 @@ secretSound.volume = 0.4;
 
 // ✅ PLAY SOUND HELPERS
 function playSound(sound) {
-  if (sound && sound.play) {
+  const soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
+  if (soundEnabled && sound && sound.play) {
     sound.currentTime = 0;
-    sound.play().catch(() => {}); // Prevent console error if user hasn’t interacted yet
+    sound.play().catch(() => {});
   }
 }
 
