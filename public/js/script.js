@@ -1,7 +1,7 @@
-// script.js — Pepper glow increases per level (5 = hottest on right)
+// script.js — Clickable Peppers with Glow Effect
 
 let currentLanguage = localStorage.getItem('language') || 'en';
-let soundEnabled = localStorage.getItem('soundEnabled') !== 'false'; // default ON
+let soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
 
 function toggleSound() {
   soundEnabled = !soundEnabled;
@@ -18,13 +18,18 @@ window.addEventListener('DOMContentLoaded', () => {
     toggleBtn.textContent = soundEnabled ? '🔊' : '🔇';
   }
 
-  document.querySelectorAll('.spice-icon').forEach(icon => {
-    icon.addEventListener('click', () => {
-      const level = parseInt(icon.dataset.level);
-      console.log(`🌶️ Pepper clicked: Level ${level}`); // Debug
+  document.querySelectorAll('.pepper').forEach(p => {
+    p.addEventListener('click', () => {
+      const level = parseInt(p.dataset.level);
       const slider = document.getElementById('spiciness-slider');
       slider.value = level;
       slider.dispatchEvent(new Event('input'));
+
+      const peppers = document.querySelectorAll('.pepper');
+      peppers.forEach((pepper, i) => {
+        const glow = i > 0 && i <= level;
+        pepper.classList.toggle('glow', glow);
+      });
     });
   });
 });
@@ -87,25 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateSpiceIcons(level) {
-    let output = '';
-    for (let i = 0; i <= 5; i++) {
-      const active = i <= level && i !== 0;
-      output += `<span class="pepper ${active ? 'glow' : ''}" data-level="${i}">${i === 0 ? '❄️' : '🌶️'}</span>`;
-    }
-    
-    // Attach click listeners *after* generating new DOM
-    pepperDisplay.querySelectorAll('.pepper').forEach(p => {
-      p.addEventListener('click', () => {
-        const newLevel = parseInt(p.dataset.level);
-        spicinessSlider.value = newLevel;
-        updateSpiceIcons(newLevel);
-      });
-    });
-
-    pepperDisplay.querySelectorAll('.pepper.glow').forEach(p => {
-      p.style.animation = 'none';
-      void p.offsetWidth;
-      p.style.animation = 'pepperWiggle 0.4s ease';
+    const peppers = pepperDisplay.querySelectorAll('.pepper');
+    peppers.forEach((p, i) => {
+      const glow = i > 0 && i <= level;
+      p.classList.toggle('glow', glow);
     });
 
     spicinessSlider.classList.toggle('burnt', level === 5);
@@ -126,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       addMessage(data?.reply || "Hmm... I didn't catch that. Try again?", 'bot');
     } catch (err) {
-      console.error('GPT error:', err);
       addMessage("⚠️ TasteBot had a hiccup. Try again soon!", 'bot');
     }
   }
