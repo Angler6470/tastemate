@@ -312,6 +312,12 @@ body::before {
   margin: 0 2px;
   opacity: 0.3;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.pepper:hover {
+  filter: drop-shadow(0 0 4px red);
+  transform: scale(1.1);
 }
 
 .pepper.glow {
