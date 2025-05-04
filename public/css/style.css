@@ -1,21 +1,18 @@
-/* css/style.css — Modern Kitchen Theme with Burnt Heat Gradient and Correct Left-to-Right Incremental Pepper Glow */
+/* css/style.css — TasteMate Theme with Clickable Pepper Glow Support */
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
 
-/* Basic reset and flex layout centering */
 body, html {
   margin: 0;
   padding: 0;
-  height: auto;
   min-height: 100vh;
   font-family: 'Rubik', sans-serif;
   background: url('../images/tastemate-bg.png') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow-x: hidden;
-  overflow-y: auto;
 }
 
 body::before {
@@ -26,20 +23,6 @@ body::before {
   z-index: 0;
 }
 
-#sound-toggle {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  margin-left: 8px;
-  color: #fff;
-}
-
-#sound-toggle:hover {
-  opacity: 0.8;
-}
-
-/* Outer app wrapper for consistent padding */
 .app-wrapper {
   width: 100%;
   max-width: 480px;
@@ -47,30 +30,18 @@ body::before {
   box-sizing: border-box;
 }
 
-#admin-gear {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  opacity: 0;
-  z-index: 99;
-  pointer-events: auto;
-  cursor: default;
-}
-
 .language-switcher {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
   display: flex;
-  gap: 6px;
+  gap: 8px;
   z-index: 50;
 }
 
 .language-switcher img {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
   border-radius: 50%;
@@ -80,6 +51,14 @@ body::before {
 .language-switcher img:hover {
   transform: scale(1.1);
   border-color: #26c6da;
+}
+
+#sound-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
 }
 
 .app-container {
@@ -92,16 +71,11 @@ body::before {
   flex-direction: column;
   gap: 20px;
   position: relative;
-  max-height: none;
-  overflow: visible;
   z-index: 10;
 }
 
-/* The rest remains unchanged */
-
 .logo-container {
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .logo-img, #logo {
@@ -122,25 +96,22 @@ body::before {
   border-radius: 12px;
   width: 100%;
   height: 180px;
-  position: relative;
   background: #e0f7fa;
 }
 
 .carousel {
   display: flex;
-  width: auto;
   transition: transform 0.5s ease-in-out;
   height: 100%;
 }
 
 .promo-slide-wrapper {
   width: 100%;
-  height: 100%;
   flex-shrink: 0;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   background: #ffffff;
 }
 
@@ -149,7 +120,6 @@ body::before {
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-  display: block;
 }
 
 .slide-caption {
@@ -165,7 +135,6 @@ body::before {
   text-align: center;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  pointer-events: none;
 }
 
 .chat-area {
@@ -182,17 +151,11 @@ body::before {
   color: #333;
 }
 
-#chat-input {
-  font-family: 'Chewy', cursive;
-  font-weight: 400;
-  font-size: 1.05rem;
-}
-
 .chat-input {
   display: flex;
   gap: 8px;
-  flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
 }
 
 .chat-input input {
@@ -222,50 +185,9 @@ body::before {
   background: #00acc1;
 }
 
-.chat-input button:active {
-  background: #0097a7;
-}
-
-.shortcuts {
-  text-align: center;
-}
-
-.shortcuts .label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #00796b;
-}
-
-.hotkeys {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-  justify-content: center;
-}
-
-.hotkeys button {
-  background: #e0f7fa;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #00796b;
-  transition: background 0.3s ease;
-}
-
-.hotkeys button:hover {
-  background: #b2ebf2;
-}
-
-.hotkeys button:active {
-  background: #80deea;
-}
-
 .spice-container {
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 10px 0;
   position: relative;
 }
 
@@ -301,35 +223,24 @@ body::before {
 }
 
 .peppers {
-  margin-top: 5px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
-  direction: ltr;
+  gap: 6px;
 }
 
 .pepper {
-  font-size: 1.3rem;
-  margin: 0 2px;
+  font-size: 1.5rem;
   opacity: 0.3;
   transition: transform 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
 }
 
-.pepper:hover {
-  filter: drop-shadow(0 0 4px red);
-  transform: scale(1.1);
-}
-
 .pepper.glow {
-  animation: pepperWiggle 0.4s ease;
   opacity: 1;
+  animation: pepperWiggle 0.4s ease;
+  filter: drop-shadow(0 0 5px red);
 }
-
-.pepper.glow:nth-child(1) { filter: drop-shadow(0 0 1px red); }
-.pepper.glow:nth-child(2) { filter: drop-shadow(0 0 2px red); }
-.pepper.glow:nth-child(3) { filter: drop-shadow(0 0 3px red); }
-.pepper.glow:nth-child(4) { filter: drop-shadow(0 0 4px red); }
-.pepper.glow:nth-child(5) { filter: drop-shadow(0 0 5px red); }
 
 @keyframes pepperWiggle {
   0% { transform: rotate(0deg); }
@@ -337,4 +248,41 @@ body::before {
   50% { transform: rotate(6deg); }
   75% { transform: rotate(-4deg); }
   100% { transform: rotate(0deg); }
+}
+
+.shortcuts .label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #00796b;
+  text-align: center;
+}
+
+.hotkeys {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  justify-content: center;
+}
+
+.hotkeys button {
+  background: #e0f7fa;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #00796b;
+  transition: background 0.3s ease;
+}
+
+.hotkeys button:hover {
+  background: #b2ebf2;
+}
+
+.hotkeys button:active {
+  background: #80deea;
+}
+
+#send-btn {
+  margin-top: 10px;
 }
