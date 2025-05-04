@@ -3,7 +3,6 @@
 let currentLanguage = localStorage.getItem('language') || 'en';
 let soundEnabled = localStorage.getItem('soundEnabled') !== 'false'; // default ON
 
-// Toggle sound on/off
 function toggleSound() {
   soundEnabled = !soundEnabled;
   localStorage.setItem('soundEnabled', soundEnabled);
@@ -13,37 +12,43 @@ function toggleSound() {
   }
 }
 
-// Set toggle icon on page load
 window.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('sound-toggle');
   if (toggleBtn) {
     toggleBtn.textContent = soundEnabled ? '🔊' : '🔇';
   }
+
+  document.querySelectorAll('.spice-icon').forEach(icon => {
+    icon.addEventListener('click', () => {
+      const level = parseInt(icon.dataset.level);
+      console.log(`🌶️ Pepper clicked: Level ${level}`); // Debug
+      const slider = document.getElementById('spiciness-slider');
+      slider.value = level;
+      slider.dispatchEvent(new Event('input'));
+    });
+  });
 });
 
-// Load sound
 const tickSound = new Audio('sounds/button_hover.mp3');
 tickSound.volume = 0.08;
 
-// Translations
 const translations = {
   en: {
     flavorShortcuts: 'Flavor Shortcuts',
     howSpicy: 'How Spicy?',
     sendPlaceholder: "Tell me what you're craving...",
     botGreeting: "👋 Hello! I'm TasteMate — your Flavor Companion! Tell me what you're craving.",
-    hotkeys: ['Sweet', 'Savory', 'Spicy', 'Tangy', 'Creamy']
+    hotkeys: ['Sweet', 'Savory', 'Spicy', 'Tangy', 'Creamy', 'Smoky', 'Fresh', 'Vegetarian', 'Cheesy', 'Crunchy']
   },
   es: {
     flavorShortcuts: 'Atajos de Sabor',
     howSpicy: '¿Qué tan picante?',
     sendPlaceholder: 'Dime qué se te antoja...',
     botGreeting: "👋 ¡Hola! Soy TasteMate — tu Compañero de Sabor. Dime qué se te antoja.",
-    hotkeys: ['Dulce', 'Salado', 'Picante', 'Ácido', 'Cremoso']
+    hotkeys: ['Dulce', 'Salado', 'Picante', 'Ácido', 'Cremoso', 'Ahumado', 'Fresco', 'Vegetariano', 'Con Queso', 'Crujiente']
   }
 };
 
-// Apply language translations
 function applyTranslations() {
   const t = translations[currentLanguage];
   document.querySelector('.shortcuts .label').innerText = t.flavorShortcuts;
@@ -83,11 +88,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateSpiceIcons(level) {
     let output = '';
-    for (let i = 0; i < 5; i++) {
-      const active = i < level;
-      output += `<span class="pepper ${active ? 'glow' : ''}">🌶️</span>`;
+    for (let i = 0; i <= 5; i++) {
+      const active = i <= level && i !== 0;
+      output += `<span class="pepper ${active ? 'glow' : ''}" data-level="${i}">${i === 0 ? '❄️' : '🌶️'}</span>`;
     }
-    pepperDisplay.innerHTML = output;
+    
+    // Attach click listeners *after* generating new DOM
+    pepperDisplay.querySelectorAll('.pepper').forEach(p => {
+      p.addEventListener('click', () => {
+        const newLevel = parseInt(p.dataset.level);
+        spicinessSlider.value = newLevel;
+        updateSpiceIcons(newLevel);
+      });
+    });
 
     pepperDisplay.querySelectorAll('.pepper.glow').forEach(p => {
       p.style.animation = 'none';
@@ -148,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateSpiceIcons(Number(spicinessSlider?.value || 0));
 
-  // Carousel
   let currentSlide = 0;
   const slides = document.querySelectorAll('.promo-slide-wrapper');
   function showSlide(index) {
