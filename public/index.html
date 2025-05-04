@@ -1,4 +1,4 @@
-<!-- index.html (embedded in canvas) -->
+<!-- index.html — Updated Layout for Send Button Flow -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
   <style>
-    /* Temporary inline fix: Ensure mobile content isn't cut off */
     body, html {
       height: auto;
       min-height: 100vh;
@@ -26,15 +25,13 @@
       <img src="images/flag-america.png" alt="English" title="English" onclick="setLanguage('en')" />
       <img src="images/flag-mexico.png" alt="Español" title="Español" onclick="setLanguage('es')" />
       <button id="sound-toggle" onclick="toggleSound()" title="Toggle Sound">🔊</button>
-    </div>    
+    </div>
     <div class="app-container">
 
-      <!-- Logo -->
       <div class="logo-container">
-        <img src="images/logo.png" alt="TasteMate Logo" class="logo-img" id="logo"/>
+        <img src="images/logo.png" alt="TasteMate Logo" class="logo-img" id="logo" />
       </div>
 
-      <!-- Promo Carousel -->
       <div class="carousel-wrapper">
         <div class="carousel" id="promo-carousel">
           <div class="promo-slide-wrapper">
@@ -56,19 +53,17 @@
         </div>
       </div>
 
-      <!-- Chat Area -->
       <div class="chat-area" id="chat-display">
         <div class="message bot">👋 Hello! I'm TasteMate — your Flavor Companion! Tell me what you're craving.</div>
       </div>
 
-      <!-- Chat Input -->
-      <div class="chat-input">
-        <input type="text" id="chat-input" placeholder="What are you in the mood for?..." style="width: 100%; max-width: 100%; font-size: 1rem;" />
-        <button id="send-btn">Send</button>
+      <!-- Chat Input (text field only) -->
+      <div class="chat-input" style="margin-top: 10px;">
+        <input type="text" id="chat-input" placeholder="What are you in the mood for? (e.g., something cozy, a beef dish...)" style="width: 100%; max-width: 100%; font-size: 1rem;" />
       </div>
 
-      <!-- Spiciness Slider (moved above shortcuts) -->
-      <div class="spice-container" style="margin-bottom: 20px;">
+      <!-- Spiciness Slider -->
+      <div class="spice-container" style="margin-top: 20px;">
         <label for="spiciness-slider">How Spicy?</label>
         <input type="range" min="0" max="5" value="0" id="spiciness-slider" />
         <div class="peppers" id="pepper-display">
@@ -81,7 +76,7 @@
       </div>
 
       <!-- Flavor Shortcuts -->
-      <div class="shortcuts" style="margin-bottom: 50px;">
+      <div class="shortcuts" style="margin-bottom: 10px;">
         <div class="label">Flavor Shortcuts</div>
         <div class="hotkeys">
           <button class="hotkey">Sweet</button>
@@ -97,10 +92,14 @@
         </div>
       </div>
 
+      <!-- Send Button (moved to bottom) -->
+      <div class="chat-input" style="justify-content: center;">
+        <button id="send-btn">Send</button>
+      </div>
+
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="js/script.js"></script>
   <script src="js/admin-panel.js"></script>
   <script src="js/button-sounds.js"></script>
