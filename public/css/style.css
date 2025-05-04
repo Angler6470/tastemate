@@ -1,4 +1,4 @@
-/* css/style.css — TasteMate Theme with Clickable Pepper Glow Support */
+/* style.css — Full TasteMate UI with Brighter Red Glow Tiers for Peppers */
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
 
@@ -236,18 +236,38 @@ body::before {
   cursor: pointer;
 }
 
-.pepper.glow {
-  opacity: 1;
-  animation: pepperWiggle 0.4s ease;
-  filter: drop-shadow(0 0 5px red);
-}
-
 @keyframes pepperWiggle {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(-6deg); }
   50% { transform: rotate(6deg); }
   75% { transform: rotate(-4deg); }
   100% { transform: rotate(0deg); }
+}
+
+.glow1 {
+  opacity: 1;
+  animation: pepperWiggle 0.4s ease;
+  filter: drop-shadow(0 0 2px red);
+}
+.glow2 {
+  opacity: 1;
+  animation: pepperWiggle 0.4s ease;
+  filter: drop-shadow(0 0 3px red);
+}
+.glow3 {
+  opacity: 1;
+  animation: pepperWiggle 0.4s ease;
+  filter: drop-shadow(0 0 5px red);
+}
+.glow4 {
+  opacity: 1;
+  animation: pepperWiggle 0.4s ease;
+  filter: drop-shadow(0 0 7px red);
+}
+.glow5 {
+  opacity: 1;
+  animation: pepperWiggle 0.4s ease;
+  filter: drop-shadow(0 0 10px red);
 }
 
 .shortcuts .label {
