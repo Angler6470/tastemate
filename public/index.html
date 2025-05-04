@@ -1,4 +1,4 @@
-<!-- index.html — Updated Layout for Send Button Flow with Clickable Peppers + Reset Option -->
+<!-- index.html — Clickable Peppers with Glow Support -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,9 @@
     }
     .app-wrapper {
       padding-bottom: 30px;
+    }
+    .pepper {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -57,12 +60,10 @@
         <div class="message bot">👋 Hello! I'm TasteMate — your Flavor Companion! Tell me what you're craving.</div>
       </div>
 
-      <!-- Chat Input (text field only) -->
       <div class="chat-input" style="margin-top: 10px;">
         <input type="text" id="chat-input" placeholder="What are you in the mood for? (e.g., something cozy, a beef dish...)" style="width: 100%; max-width: 100%; font-size: 1rem;" />
       </div>
 
-      <!-- Spiciness Slider -->
       <div class="spice-container" style="margin-top: 20px;">
         <label for="spiciness-slider">How Spicy?</label>
         <input type="range" min="0" max="5" value="0" id="spiciness-slider" />
@@ -76,7 +77,6 @@
         </div>
       </div>
 
-      <!-- Flavor Shortcuts -->
       <div class="shortcuts" style="margin-bottom: 10px;">
         <div class="label">Flavor Shortcuts</div>
         <div class="hotkeys">
@@ -93,7 +93,6 @@
         </div>
       </div>
 
-      <!-- Send Button (moved to bottom) -->
       <div class="chat-input" style="justify-content: center;">
         <button id="send-btn">Send</button>
       </div>
@@ -102,6 +101,18 @@
   </div>
 
   <script src="js/script.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.pepper').forEach(p => {
+        p.addEventListener('click', () => {
+          const level = parseInt(p.dataset.level);
+          const slider = document.getElementById('spiciness-slider');
+          slider.value = level;
+          slider.dispatchEvent(new Event('input'));
+        });
+      });
+    });
+  </script>
   <script src="js/admin-panel.js"></script>
   <script src="js/button-sounds.js"></script>
 </body>
