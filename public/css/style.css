@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-=======
-/* style.css — Full TasteMate UI with Brighter Red Glow Tiers for Peppers */
-
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
 
 body, html {
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
-  height: 100vh;
-  background: linear-gradient(to bottom right, #c8e6e9, #b2ebf2); /* background gradient */
-=======
   min-height: 100vh;
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
   font-family: 'Rubik', sans-serif;
+  background: url('../images/tastemate-bg.png') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -29,24 +21,6 @@ body::before {
   z-index: 0;
 }
 
-<<<<<<< HEAD
-#sound-toggle {
-  background: transparent;
-  border: none;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.7);
-  z-index: 0;
-}
-
-=======
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 .app-wrapper {
   width: 100%;
   max-width: 480px;
@@ -271,51 +245,31 @@ body::before {
 .glow1 {
   opacity: 1;
   animation: pepperWiggle 0.4s ease;
-<<<<<<< HEAD
   filter: drop-shadow(0 0 2px #ffb347);
-=======
-  filter: drop-shadow(0 0 2px red);
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 }
 .glow2 {
   opacity: 1;
   animation: pepperWiggle 0.4s ease;
-<<<<<<< HEAD
   filter: drop-shadow(0 0 4px #ff9933);
-=======
-  filter: drop-shadow(0 0 3px red);
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 }
 .glow3 {
   opacity: 1;
   animation: pepperWiggle 0.4s ease;
-<<<<<<< HEAD
   filter: drop-shadow(0 0 6px #ff6600);
-=======
-  filter: drop-shadow(0 0 5px red);
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 }
 .glow4 {
   opacity: 1;
   animation: pepperWiggle 0.4s ease;
-<<<<<<< HEAD
   filter: drop-shadow(0 0 8px #ff3300);
-=======
-  filter: drop-shadow(0 0 7px red);
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 }
 .glow5 {
   opacity: 1;
   animation: pepperWiggle 0.4s ease;
-<<<<<<< HEAD
   filter: drop-shadow(0 0 10px #ff0000);
 }
 
 .burnt {
   filter: drop-shadow(0 0 12px #ff0000) brightness(1.2);
-=======
-  filter: drop-shadow(0 0 10px red);
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 }
 
 .shortcuts .label {
@@ -351,7 +305,6 @@ body::before {
   background: #80deea;
 }
 
-<<<<<<< HEAD
 #surprise-btn {
   background: linear-gradient(135deg, #ff9900, #ff5e00);
   color: white;
@@ -401,10 +354,6 @@ body::before {
   100% {
     box-shadow: 0 0 10px rgba(255, 94, 0, 0.4);
   }
-=======
-#send-btn {
-  margin-top: 10px;
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
 }
 
 #send-btn {
