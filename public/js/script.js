@@ -87,11 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateSpiceIcons(level) {
     const peppers = pepperDisplay.querySelectorAll('.pepper');
+    // Remove all glow classes
     peppers.forEach((p, i) => {
       p.classList.remove('glow1', 'glow2', 'glow3', 'glow4', 'glow5');
-      if (i === 0) return; // ❄️ stays plain
-      if (i <= level) p.classList.add(`glow${i}`);
+      p.style.opacity = '';
     });
+    // Apply glow classes to the correct number of peppers (skip the snowflake at i=0)
+    for (let i = 1; i <= 5; i++) {
+      if (i <= level) {
+        peppers[i].classList.add(`glow${i}`);
+        peppers[i].style.opacity = '1';
+      } else {
+        peppers[i].style.opacity = '0.3';
+      }
+    }
+    // Always keep the snowflake at low opacity
+    peppers[0].style.opacity = level === 0 ? '1' : '0.3';
 
     spicinessSlider.classList.toggle('burnt', level === 5);
 
