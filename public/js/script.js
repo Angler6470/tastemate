@@ -170,5 +170,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+async function surpriseMe() {
+  const spice = Math.floor(Math.random() * 6); // Random 0–5
+  const surprisePrompts = [
+    'Surprise me with a wild flavor combo!',
+    'Give me something adventurous and spicy!',
+    'What’s an underrated dish I need to try?',
+    'Hit me with your boldest fusion!',
+    'Something weird but delicious please!'
+  ];
+
+  const message = surprisePrompts[Math.floor(Math.random() * surprisePrompts.length)];
+
+  // Update the correct input and slider
+  const input = document.getElementById('chat-input');
+  const slider = document.getElementById('spiciness-slider');
+  if (!input || !slider) return;
+
+  input.value = message;
+  slider.value = spice;
+  slider.dispatchEvent(new Event('input'));
+
+  // Show the message & send it
+  addMessage(message, 'user');
+  await sendToTasteBot(message);
+}
+
 window.toggleSound = toggleSound;
 window.setLanguage = setLanguage;
