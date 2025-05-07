@@ -231,9 +231,8 @@ body::before {
 
 .pepper {
   font-size: 1.5rem;
-  opacity: 0.3;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  cursor: pointer;
+  margin: 0 3px;
+  transition: filter 0.3s ease;
 }
 
 @keyframes pepperWiggle {
@@ -244,37 +243,22 @@ body::before {
   100% { transform: rotate(0deg); }
 }
 
-.glow1 {
-  opacity: 1;
-  animation: pepperWiggle 0.4s ease;
-  filter: drop-shadow(0 0 2px red);
-}
-.glow2 {
-  opacity: 1;
-  animation: pepperWiggle 0.4s ease;
-  filter: drop-shadow(0 0 3px red);
-}
-.glow3 {
-  opacity: 1;
-  animation: pepperWiggle 0.4s ease;
-  filter: drop-shadow(0 0 5px red);
-}
-.glow4 {
-  opacity: 1;
-  animation: pepperWiggle 0.4s ease;
-  filter: drop-shadow(0 0 7px red);
-}
-.glow5 {
-  opacity: 1;
-  animation: pepperWiggle 0.4s ease;
-  filter: drop-shadow(0 0 10px red);
-}
+/* 🌶️ Pepper Glow Effects */
+.glow1 { filter: drop-shadow(0 0 2px #ffb347); }
+.glow2 { filter: drop-shadow(0 0 4px #ff9933); }
+.glow3 { filter: drop-shadow(0 0 6px #ff6600); }
+.glow4 { filter: drop-shadow(0 0 8px #ff3300); }
+.glow5 { filter: drop-shadow(0 0 10px #ff0000); }
 
 .shortcuts .label {
   font-weight: bold;
   margin-bottom: 8px;
   color: #00796b;
   text-align: center;
+}
+
+.burnt {
+  filter: drop-shadow(0 0 12px #ff0000) brightness(1.2);
 }
 
 .hotkeys {
