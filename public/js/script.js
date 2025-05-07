@@ -37,6 +37,22 @@ window.addEventListener('DOMContentLoaded', () => {
 const tickSound = new Audio('sounds/button_hover.mp3');
 tickSound.volume = 0.08;
 
+async function surpriseMe() {
+  const spice = Math.floor(Math.random() * 6); // Random 0–5
+  const surprisePrompts = [
+    'Surprise me with a wild flavor combo!',
+    'Give me something adventurous and spicy!',
+    'What’s an underrated dish I need to try?',
+    'Hit me with your boldest fusion!',
+    'Something weird but delicious please!'
+  ];
+
+  const message = surprisePrompts[Math.floor(Math.random() * surprisePrompts.length)];
+  document.getElementById('userInput').value = message;
+  document.getElementById('spiceSlider').value = spice;
+  await sendMessage(); // Call the same function used for the Send button
+}
+
 const translations = {
   en: {
     flavorShortcuts: 'Flavor Shortcuts',
