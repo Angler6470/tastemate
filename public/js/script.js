@@ -1,4 +1,4 @@
-// script.js — Clickable Peppers with Glow Effect
+// script.js — Clickable Peppers with Tiered Glow Effect
 
 let currentLanguage = localStorage.getItem('language') || 'en';
 let soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
@@ -24,45 +24,12 @@ window.addEventListener('DOMContentLoaded', () => {
       const slider = document.getElementById('spiciness-slider');
       slider.value = level;
       slider.dispatchEvent(new Event('input'));
-
-      const peppers = document.querySelectorAll('.pepper');
-      peppers.forEach((pepper, i) => {
-        const glow = i > 0 && i <= level;
-        pepper.classList.toggle('glow', glow);
-      });
     });
   });
 });
 
 const tickSound = new Audio('sounds/button_hover.mp3');
 tickSound.volume = 0.08;
-
-async function surpriseMe() {
-  const spice = Math.floor(Math.random() * 6); // Random 0–5
-  const surprisePrompts = [
-    'Surprise me with a wild flavor combo!',
-    'Give me something adventurous and spicy!',
-    'What’s an underrated dish I need to try?',
-    'Hit me with your boldest fusion!',
-    'Something weird but delicious please!'
-  ];
-
-  const message = surprisePrompts[Math.floor(Math.random() * surprisePrompts.length)];
-
-  // Update the correct input and slider
-  const input = document.getElementById('chat-input');
-  const slider = document.getElementById('spiciness-slider');
-  if (!input || !slider) return;
-
-  input.value = message;
-  slider.value = spice;
-  slider.dispatchEvent(new Event('input'));
-
-  // Show the message & send it
-  addMessage(message, 'user');
-  await sendToTasteBot(message);
-}
-
 
 const translations = {
   en: {
@@ -121,8 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSpiceIcons(level) {
     const peppers = pepperDisplay.querySelectorAll('.pepper');
     peppers.forEach((p, i) => {
-      const glow = i > 0 && i <= level;
-      p.classList.toggle('glow', glow);
+      p.classList.remove('glow1', 'glow2', 'glow3', 'glow4', 'glow5');
+      if (i === 0) return; // ❄️ stays plain
+      if (i <= level) p.classList.add(`glow${i}`);
     });
 
     spicinessSlider.classList.toggle('burnt', level === 5);
