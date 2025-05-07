@@ -48,10 +48,21 @@ async function surpriseMe() {
   ];
 
   const message = surprisePrompts[Math.floor(Math.random() * surprisePrompts.length)];
-  document.getElementById('userInput').value = message;
-  document.getElementById('spiceSlider').value = spice;
-  await sendMessage(); // Call the same function used for the Send button
+
+  // Update the correct input and slider
+  const input = document.getElementById('chat-input');
+  const slider = document.getElementById('spiciness-slider');
+  if (!input || !slider) return;
+
+  input.value = message;
+  slider.value = spice;
+  slider.dispatchEvent(new Event('input'));
+
+  // Show the message & send it
+  addMessage(message, 'user');
+  await sendToTasteBot(message);
 }
+
 
 const translations = {
   en: {
