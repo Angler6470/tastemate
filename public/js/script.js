@@ -197,8 +197,4 @@ async function surpriseMe() {
 }
 
 window.toggleSound = toggleSound;
-<<<<<<< HEAD
 window.setLanguage = setLanguage;
-=======
-window.setLanguage = setLanguage;
->>>>>>> 2e0953b (💄 UI polish: background image and spicy glow upgrades)
