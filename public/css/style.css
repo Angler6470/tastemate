@@ -303,6 +303,57 @@ body::before {
   background: #80deea;
 }
 
+#surprise-btn {
+  background: linear-gradient(135deg, #ff9900, #ff5e00);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(255, 94, 0, 0.4);
+  animation: bounceIn 1s ease, shimmer 3s infinite linear;
+  position: relative;
+  overflow: hidden;
+}
+
+#surprise-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 94, 0, 0.6);
+}
+
+/* Bounce-in effect */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 94, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 94, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 94, 0, 0.4);
+  }
+}
+
 #send-btn {
   margin-top: 10px;
 }
